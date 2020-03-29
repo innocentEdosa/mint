@@ -1,8 +1,14 @@
+import { BrowserRouter } from 'react-router-dom';
 import { render } from 'react-dom';
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 
 render(
-
-  <div>This is the transMonitor app</div>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>this is the transMonitor application</div>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('react-root'),
 );
