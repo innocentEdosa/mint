@@ -11,6 +11,14 @@ module.exports = {
   },
   resolve: {
     alias: {
+      api: PATH.resolve(__dirname, 'src/apiService/'),
+      fixtures: PATH.resolve(__dirname, 'src/fixtures/'),
+      assets: PATH.resolve(__dirname, 'src/assets/'),
+      theme: PATH.resolve(__dirname, 'src/theme/'),
+      components: PATH.resolve(__dirname, 'src/components/'),
+      containers: PATH.resolve(__dirname, 'src/containers/'),
+      store: PATH.resolve(__dirname, 'src/store/'),
+      HOC: PATH.resolve(__dirname, 'src/HOC'),
     },
     extensions: ['.js', '.jsx', '.css'],
   },
