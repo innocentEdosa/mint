@@ -32,7 +32,7 @@ export const paymentsNav = [
   {
     label: 'Un - Reconciled Payments',
     icon: <UnReconciledWallet />,
-    path: routes.unreonciledpayments,
+    path: routes.unreconciledpayments,
   },
   {
     label: 'Manual Settlements',
