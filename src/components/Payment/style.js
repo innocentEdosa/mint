@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '48px',
     },
   },
+  tableWrapper: {
+    borderRadius: 2,
+    margin: '2rem 0rem',
+    boxShadow: 'none',
+  },
 }));
 
 export default useStyles;

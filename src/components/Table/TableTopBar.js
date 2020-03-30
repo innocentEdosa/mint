@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   tableTopTab: {
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const TableTopBar = () => {
+const TableTopBar = ({ selectCategory }) => {
   const classes = useStyles();
 
   // handle row menu (how many rows should show) functionality
@@ -109,9 +110,12 @@ const TableTopBar = () => {
       open={isSelectMenuOpen}
       onClose={handleSelectMenuClose}
     >
-      <MenuItem onClick={(e) => { handleSelectMenuClose(e); }}>All</MenuItem>
-      <MenuItem onClick={(e) => { handleSelectMenuClose(e); }}>Reconciled</MenuItem>
-      <MenuItem onClick={() => { handleSelectMenuClose(); }}>Un-Reconciled</MenuItem>
+      {
+      selectCategory.map((category) => (
+        <MenuItem onClick={(e) => { handleSelectMenuClose(e); }}>{category}</MenuItem>
+
+      ))
+    }
     </Menu>
   );
 
@@ -170,6 +174,10 @@ const TableTopBar = () => {
 
     </div>
   );
+};
+
+TableTopBar.propTypes = {
+  selectCategory: PropTypes.shape([]).isRequired,
 };
 
 export default TableTopBar;
