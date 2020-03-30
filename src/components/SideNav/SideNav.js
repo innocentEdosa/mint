@@ -19,8 +19,8 @@ const SideNav = () => {
 
   const renderNavItems = (navArray) => (
     <List className={classes.list}>
-      {navArray.map(({ label, icon }) => (
-        <Link>
+      {navArray.map(({ label, icon, path }) => (
+        <Link to={path}>
           <ListItemText className={classes.listItem}>
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText className={classes.listText} wrap>
