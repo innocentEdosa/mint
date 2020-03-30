@@ -13,6 +13,9 @@ import { ReactComponent as VectorDown } from 'assets/img/Vectordown2.svg';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import ToggleComponent from 'HOC/ToggleComponent';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import useStyles from './style';
 
 const PaymentComponent = ({
@@ -26,12 +29,32 @@ const PaymentComponent = ({
   return (
     <div className={classes.paymentWrapper}>
       <h2 className="title">Payments</h2>
-      <TableTopBar selectCategory={selectCategory} />
-      <TableContainer className={classes.tableWrapper} component={Paper}>
-        <Table>
-          <TableHead rows={tableHeadArray} />
-          <TableBody>
-            {
+      <ToggleComponent
+        check={fetchingPayments}
+        component={(
+          <div className={classes.loader}>
+            <CircularProgress />
+          </div>
+)}
+      />
+      <ToggleComponent
+        check={fetchingPaymentsError && !fetchingPayments}
+        components={(
+          <div>
+            error: something went really wrong
+          </div>
+)}
+      />
+      <ToggleComponent
+        check={!fetchingPayments && payments.length}
+        component={(
+          <>
+            <TableTopBar selectCategory={selectCategory} />
+            <TableContainer className={classes.tableWrapper} component={Paper}>
+              <Table>
+                <TableHead rows={tableHeadArray} />
+                <TableBody>
+                  {
               payments.map(({
                 itemType, price, transactionNo, date, status,
               }) => (
@@ -57,7 +80,7 @@ const PaymentComponent = ({
                       <Button
                         size="small"
                         variant="outlined"
-                        className={clsx(classes.statusButton,{
+                        className={clsx(classes.statusButton, {
                           [classes.pending]: status === 'Pending',
                           [classes.reconciled]: status === 'Reconciled',
                           [classes.unreconciled]: status === 'Un-Reconciled',
@@ -74,10 +97,13 @@ const PaymentComponent = ({
                 </>
               ))
             }
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TableBottomBar />
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TableBottomBar />
+          </>
+      )}
+      />
     </div>
   );
 };
