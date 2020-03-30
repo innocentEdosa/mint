@@ -9,7 +9,8 @@ import { ReactComponent as Right } from 'assets/img/Objectright.svg';
 import { ReactComponent as Left } from 'assets/img/Objectleft.svg';
 import { ReactComponent as BigChart } from 'assets/img/biggraph.svg';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import { withStyles } from '@material-ui/core/styles';
 
 import DatePickerButton from 'components/DatePickerButton';
 import useStyles from './style';
@@ -19,6 +20,16 @@ const TransactionComponent = () => {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const handleDateChange = (date) => setSelectedDate(date);
+
+  const EnhancedLinearProgress = withStyles({
+    colorPrimary: {
+      backgroundColor: '#FDC203',
+    },
+    barColorPrimary: {
+      backgroundColor: '#27AE60',
+    },
+  })(LinearProgress);
+
   return (
     <>
       <div className={classes.transactionList}>
@@ -91,7 +102,7 @@ const TransactionComponent = () => {
         <div className="summary">
           <div className="summarySection mb1">
             <h4 className="summaryHeader">Order</h4>
-            <LinearProgress />
+            <EnhancedLinearProgress variant="determinate" value={80} />
             <div>
               <p className="summaryEntry">Pending Orders: 20</p>
               <p className="summaryEntry">Reconciled Orders: 80</p>
@@ -101,7 +112,7 @@ const TransactionComponent = () => {
           </div>
           <div className="summarySection">
             <h4 className="summaryHeader">Payments</h4>
-            <LinearProgress />
+            <EnhancedLinearProgress variant="determinate" value={50} />
             <div>
               <p className="summaryEntry">Pending Payments: 20</p>
               <p className="summaryEntry">Reconciled Payments: 80</p>
