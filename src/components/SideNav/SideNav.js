@@ -23,7 +23,8 @@ const SideNav = () => {
         <Link to={path}>
           <ListItemText className={clsx(classes.listItem, {
             [classes.activeList]: pathname === path,
-          })}>
+          })}
+          >
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText className={classes.listText} wrap>
               {label}
@@ -36,7 +37,7 @@ const SideNav = () => {
   return (
     <NavigationHandler>
       {
-        ({pathname}) => (
+        ({ pathname }) => (
           <div className={classes.sideNavWrapper}>
             <Drawer variant="permanent" className={clsx(classes.drawer)}>
               <div className={classes.toolbar}>
