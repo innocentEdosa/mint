@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import ToggleComponent from 'HOC/ToggleComponent';
 import { ReactComponent as SearchIcon } from 'assets/img/topsearch.svg';
 import { ReactComponent as NotificationIcon } from 'assets/img/bell.svg';
 import Button from '@material-ui/core/Button';
@@ -30,7 +30,7 @@ export default function PrimarySearchAppBar() {
 
 
   const menuId = 'account-menu';
-  const renderMenu = (
+  const renderMenu = (logout) => (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -40,14 +40,16 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      <MenuItem onClick={() => { logout(); handleMenuClose(); }}>Log out</MenuItem>
     </Menu>
   );
 
   return (
     <NavigationHandler>
       {
-        () => (
+        ({
+          isAuthenticated, fullName, imgUrl, login, logout,
+        }) => (
           <div className={classes.grow}>
             <AppBar className={classes.header} position="static">
               <Toolbar>
@@ -73,31 +75,47 @@ export default function PrimarySearchAppBar() {
                   <Button className="topBarBtn">
                     FAQ
                   </Button>
-                  <IconButton aria-label="show 17 new notifications" color="inherit">
-                    <Badge badgeContent={8} color="primary">
-                      <NotificationIcon />
-                    </Badge>
-                  </IconButton>
-                  <div className={classes.profileContainer}>
-                    <div className="profileDetails">
-                      <h6 className="al-l">Hello</h6>
-                      <p>Innocent Edosa</p>
-                    </div>
-                    <IconButton
-                      edge="end"
-                      aria-label="account of current user"
-                      aria-controls={menuId}
-                      aria-haspopup="true"
-                      onClick={handleProfileMenuOpen}
-                      color="inherit"
-                    >
-                      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                    </IconButton>
-                  </div>
+                  <ToggleComponent
+                    check={!isAuthenticated}
+                    component={(
+                      <Button onClick={login} className="topBarBtn">
+                        Login
+                      </Button>
+                )}
+                  />
+                  <ToggleComponent
+                    check={isAuthenticated}
+                    component={(
+                      <>
+                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                          <Badge badgeContent={8} color="primary">
+                            <NotificationIcon />
+                          </Badge>
+                        </IconButton>
+                        <div className={classes.profileContainer}>
+                          <div className="profileDetails">
+                            <h6 className="al-l">Hello</h6>
+                            <p>{fullName}</p>
+                          </div>
+                          <IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                          >
+                            <Avatar alt={fullName} src={imgUrl} />
+                          </IconButton>
+                        </div>
+                      </>
+                  )}
+                  />
                 </div>
+
               </Toolbar>
             </AppBar>
-            {renderMenu}
+            {renderMenu(logout)}
           </div>
         )
       }
