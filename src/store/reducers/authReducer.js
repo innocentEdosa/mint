@@ -3,7 +3,8 @@ import faker from 'faker';
 
 const initialState = {
   isAuthenticated: true,
-  fullName: faker.name,
+  fullName: faker.name.findName(),
+  imgUrl: faker.image.avatar(),
 };
 
 const login = (state) => ({

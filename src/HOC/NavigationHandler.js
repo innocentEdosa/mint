@@ -1,11 +1,24 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login as loginAction, logout as logoutAction } from 'store/actions/authActions';
 
-const NavigationHandler = ({ children }) => {
+const NavigationHandler = (props) => {
   const { pathname } = useLocation();
+
   return (
-    children({ pathname })
+    props.children({ pathname, ...props })
   );
 };
 
-export default NavigationHandler;
+const mapStateToProps = ({ auth: { isAuthenticated, fullName, imgUrl } }) => ({
+  isAuthenticated,
+  fullName,
+  imgUrl,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login: () => dispatch(loginAction()),
+  logout:() => dispatch(logoutAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationHandler);
