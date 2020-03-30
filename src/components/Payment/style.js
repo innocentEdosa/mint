@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   loader: {
     display: 'flex',
     justifyContent: 'center',
-  }
+  },
 }));
 
 export default useStyles;
