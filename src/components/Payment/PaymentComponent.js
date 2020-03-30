@@ -4,6 +4,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableTopBar from 'components/Table/TableTopBar';
 import TableHead from 'components/Table/TableHead';
 import Paper from '@material-ui/core/Paper';
+import TableBottomBar from 'components/Table/TableBottomBar';
 
 import useStyles from './style';
 
@@ -20,6 +21,7 @@ const PaymentComponent = () => {
           <TableHead rows={tableHeadArray} />
         </Table>
       </TableContainer>
+      <TableBottomBar />
     </div>
   );
 };

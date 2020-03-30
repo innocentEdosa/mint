@@ -22,6 +22,7 @@ const theme = createMuiTheme({
       secondaryShade2: '#414042',
       secondaryShade3: '#7F8FA4',
       secondaryShade4: '#647787',
+      light: '#fff',
     },
     button: {
       special: '#27AE60',

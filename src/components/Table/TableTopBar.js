@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     minWidth: '150px',
     border: ' 1px solid #CED0DA',
-    color: theme.palette.text.secondary2,
+    color: theme.palette.text.secondaryShade2,
+    textTransform: 'none',
   },
 }));
 
@@ -160,7 +161,6 @@ const TableTopBar = ({ selectCategory }) => {
           onClick={handleSelectMenuOpen}
 
           size="small"
-          color="primary"
           variant="outlined"
           className={classes.dropDown}
           endIcon={<VectorDown />}
