@@ -18,7 +18,7 @@ const mapStateToProps = ({ auth: { isAuthenticated, fullName, imgUrl } }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   login: () => dispatch(loginAction()),
-  logout:() => dispatch(logoutAction()),
+  logout: () => dispatch(logoutAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationHandler);
