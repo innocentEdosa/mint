@@ -14,6 +14,7 @@ const makeServer = ({ environment = 'development' } = {}) => {
     models: {
       payment: Model,
       order: Model,
+      transaction: Model,
     },
 
     factories: {
@@ -37,6 +38,20 @@ const makeServer = ({ environment = 'development' } = {}) => {
       order: Factory.extend({
         status() {
           return orderStatus[Math.floor(Math.random() * (2 - 0)) + 0];
+        },
+      }),
+      transaction: Factory.extend({
+        dailyTransactionVolume() {
+          return faker.finance.mask();
+        },
+        dailyTransactionValue() {
+          return faker.finance.amount() * 3;
+        },
+        totalTransactionValue() {
+          return faker.finance.amount() * 10;
+        },
+        totalTransactionVolume() {
+          return faker.finance.mask() * 3;
         },
       }),
     },
