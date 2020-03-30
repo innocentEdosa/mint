@@ -10,18 +10,21 @@ import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
-
+import NavigationHandler from 'HOC/NavigationHandler';
 import useStyles from './style';
 
 const SideNav = () => {
   const classes = useStyles();
 
 
-  const renderNavItems = (navArray) => (
+  const renderNavItems = (navArray, pathname) => (
     <List className={classes.list}>
-      {navArray.map(({ label, icon }) => (
-        <Link>
-          <ListItemText className={classes.listItem}>
+      {navArray.map(({ label, icon, path }) => (
+        <Link to={path}>
+          <ListItemText className={clsx(classes.listItem, {
+            [classes.activeList]: pathname === path,
+          })}
+          >
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText className={classes.listText} wrap>
               {label}
@@ -32,34 +35,40 @@ const SideNav = () => {
     </List>
   );
   return (
-    <div className={classes.sideNavWrapper}>
-      <Drawer variant="permanent" className={clsx(classes.drawer)}>
-        <div className={classes.toolbar}>
-          <Button variant="contained" className={classes.invoiceBtn}>
-            {' '}
-            Generate Invoice
-          </Button>
-        </div>
-        <div className={classes.navWrapper}>
-          <div>
-            <h6 className={classes.navGroupHeader}>Main</h6>
-            {renderNavItems(mainNav)}
+    <NavigationHandler>
+      {
+        ({ pathname }) => (
+          <div className={classes.sideNavWrapper}>
+            <Drawer variant="permanent" className={clsx(classes.drawer)}>
+              <div className={classes.toolbar}>
+                <Button variant="contained" className={classes.invoiceBtn}>
+                  {' '}
+                  Generate Invoice
+                </Button>
+              </div>
+              <div className={classes.navWrapper}>
+                <div>
+                  <h6 className={classes.navGroupHeader}>Main</h6>
+                  {renderNavItems(mainNav, pathname)}
+                </div>
+                <div>
+                  <h6 className={classes.navGroupHeader}>Payments</h6>
+                  {renderNavItems(paymentsNav, pathname)}
+                </div>
+                <div>
+                  <h6 className={classes.navGroupHeader}>Orders</h6>
+                  {renderNavItems(ordersNav, pathname)}
+                </div>
+                <div>
+                  <h6 className={classes.navGroupHeader} />
+                  {renderNavItems(generalNav, pathname)}
+                </div>
+              </div>
+            </Drawer>
           </div>
-          <div>
-            <h6 className={classes.navGroupHeader}>Payments</h6>
-            {renderNavItems(paymentsNav)}
-          </div>
-          <div>
-            <h6 className={classes.navGroupHeader}>Orders</h6>
-            {renderNavItems(ordersNav)}
-          </div>
-          <div>
-            <h6 className={classes.navGroupHeader} />
-            {renderNavItems(generalNav)}
-          </div>
-        </div>
-      </Drawer>
-    </div>
+        )
+      }
+    </NavigationHandler>
   );
 };
 

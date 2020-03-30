@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px',
   },
   listItem: {
-    padding: theme.spacing(0.5, 8),
+    padding: theme.spacing(0.8, 8),
     margin: '0px',
     fontSize: '11px',
     display: 'flex',
@@ -62,11 +62,12 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     height: '100%',
     top: 'auto',
+    color: theme.palette.text.secondaryShade4,
 
     '& .MuiDrawer-paper': {
+      color: theme.palette.text.secondaryShade4,
       position: 'inherit',
       background: theme.palette.aux.light,
-      color: theme.palette.text.inactive,
     },
     '& .MuiListItem-root': {
       color: 'inherit',
@@ -78,12 +79,24 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiListItemIcon-root': {
       color: 'inherit',
     },
-    '& .activeList': {
-      color: theme.palette.text.white,
-      background: theme.palette.primary.main,
-    },
-
   },
+  activeList: {
+    color: theme.palette.text.secondaryShade4,
+    background: 'rgba(24, 118, 240, 0.1)',
+    display: 'flex',
+    position: 'relative',
+    justifyContent: 'space-between',
+    '&::before': {
+      background: theme.palette.primary.main,
+      width: theme.spacing(0.5),
+      height: '100%',
+      content: "''",
+      position: 'absolute',
+      top: 0,
+      left: 0,
+    },
+  },
+
   listIconWrapper: {
     fontSize: '1.5rem',
     paddingLeft: '5px',

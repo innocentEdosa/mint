@@ -12,7 +12,7 @@ import { ReactComponent as SearchIcon } from 'assets/img/topsearch.svg';
 import { ReactComponent as NotificationIcon } from 'assets/img/bell.svg';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-
+import NavigationHandler from 'HOC/NavigationHandler';
 import useStyles from './style';
 
 export default function PrimarySearchAppBar() {
@@ -41,61 +41,66 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log in</MenuItem>
     </Menu>
   );
 
   return (
-    <div className={classes.grow}>
-      <AppBar className={classes.header} position="static">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            TransMonitor
-          </Typography>
-          <div className={classes.search}>
-            <SearchIcon />
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+    <NavigationHandler>
+      {
+        () => (
+          <div className={classes.grow}>
+            <AppBar className={classes.header} position="static">
+              <Toolbar>
+                <Typography className={classes.title} variant="h6" noWrap>
+                  TransMonitor
+                </Typography>
+                <div className={classes.search}>
+                  <SearchIcon />
+                  <InputBase
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </div>
+                <div className={classes.grow} />
+                <div className={classes.navSection}>
+                  <Button className="topBarBtn">
+                    Support
+                  </Button>
+                  <Button className="topBarBtn">
+                    FAQ
+                  </Button>
+                  <IconButton aria-label="show 17 new notifications" color="inherit">
+                    <Badge badgeContent={8} color="primary">
+                      <NotificationIcon />
+                    </Badge>
+                  </IconButton>
+                  <div className={classes.profileContainer}>
+                    <div className="profileDetails">
+                      <h6 className="al-l">Hello</h6>
+                      <p>Innocent Edosa</p>
+                    </div>
+                    <IconButton
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    </IconButton>
+                  </div>
+                </div>
+              </Toolbar>
+            </AppBar>
+            {renderMenu}
           </div>
-          <div className={classes.grow} />
-          <div className={classes.navSection}>
-            <Button className="topBarBtn">
-              Support
-            </Button>
-            <Button className="topBarBtn">
-              FAQ
-            </Button>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={8} color="primary">
-                <NotificationIcon />
-              </Badge>
-            </IconButton>
-            <div className={classes.profileContainer}>
-              <div className="profileDetails">
-                <h6 className="al-l">Hello</h6>
-                <p>Innocent Edosa</p>
-              </div>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </IconButton>
-            </div>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </div>
+        )
+      }
+    </NavigationHandler>
   );
 }
