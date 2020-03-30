@@ -9,7 +9,7 @@ import OverviewContainer from 'containers/OverviewContainer';
 const DashboardContainer = () => (
   <DashboardLayout>
     <Switch>
-      <Redirect exact from={routes.dashboard} to={routes.report} />
+      <Redirect exact from={routes.dashboard} to={routes.overview} />
       <Route exact path={routes.overview} component={OverviewContainer} />
     </Switch>
   </DashboardLayout>

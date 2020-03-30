@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { login as loginAction, logout as logoutAction } from 'store/actions/authActions';
 
 const NavigationHandler = (props) => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation() || {};
 
   return (
     props.children({ pathname, ...props })

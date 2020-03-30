@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "html-webpack-plugin": "^4.0.3",
+    "miragejs": "^0.1.35",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-datepicker": "^2.14.1",
