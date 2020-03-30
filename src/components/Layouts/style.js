@@ -11,9 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
   showSection: {
     flexGrow: 1,
-    padding: theme.spacing(5, 10),
+    padding: theme.spacing(5, 10, 5, 8),
     background: theme.palette.aux.lightShade2,
     height: '100%',
+    overflowY: 'scroll',
   },
   setupLoader: {
     display: 'flex',
