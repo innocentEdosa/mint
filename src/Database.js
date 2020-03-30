@@ -5,7 +5,7 @@ import faker from 'faker';
 
 
 const makeServer = ({ environment = 'development' } = {}) => {
-  const paymentStatus = ['reconciled', 'un-reconciled', 'pending'];
+  const paymentStatus = ['Reconciled', 'Un-Reconciled', 'Pending'];
   const orderStatus = ['reconciled', 'pending'];
 
   const server = new Server({
@@ -57,8 +57,8 @@ const makeServer = ({ environment = 'development' } = {}) => {
     },
 
     seeds(server) {
-      server.createList('payment', 100);
-      server.createList('order', 100);
+      server.createList('payment', 20);
+      server.createList('order', 20);
     },
 
     routes() {
