@@ -59,7 +59,7 @@ const PaymentComponent = ({
                 itemType, price, transactionNo, date, status,
               }) => (
                 <>
-                  <TableRow>
+                  <TableRow Key={itemType}>
                     <TableCell className={classes.specialCell}>
                       <Avatar>{itemType[0]}</Avatar>
                       {itemType}

@@ -103,6 +103,15 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(0deg, #F2F4F7 0%, #FFFFFF 100%)',
     color: theme.palette.aux.lightShade4,
   },
+  loader: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: theme.spacing(1, 0),
+  },
+  spinner: {
+    width: '20px !important',
+    height: '20px !important',
+  },
 }));
 
 export default useStyles;

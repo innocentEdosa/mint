@@ -19,4 +19,4 @@ export const createApiService = (endpoint, httpVerb = 'get', baseURL = '/api') =
 
 
 export const fetchPaymentService = createApiService('/payments');
-export const fetchOrders = createApiService('/orders');
+export const fetchOrderService = createApiService('/orders');
