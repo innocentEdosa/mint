@@ -15,7 +15,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import ToggleComponent from 'HOC/ToggleComponent';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import format from 'date-format';
 import useStyles from './style';
 
 const PaymentComponent = ({
@@ -73,7 +73,7 @@ const PaymentComponent = ({
                       {' '}
                     </TableCell>
                     <TableCell>
-                      {date}
+                      {format('hh:mm', format.parse(format.ISO8601_FORMAT, date))}
                       {' '}
                     </TableCell>
                     <TableCell>
